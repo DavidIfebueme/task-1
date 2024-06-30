@@ -4,15 +4,9 @@ def get_weather(city):
     try:
         api_key = '2ca1c0e8c36e7b44a3aada42f0b20f69'
         url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
-        
-        # Make the API request
         response = requests.get(url)
-        response.raise_for_status()  # Raise exception for bad status codes
-
-        # Parse JSON response
+        response.raise_for_status()
         weather_data = response.json()
-
-        # Extract temperature in Celsius
         temperature = weather_data['main']['temp']
 
         return temperature

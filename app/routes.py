@@ -8,13 +8,12 @@ main = Blueprint('main', __name__)
 @main.route('/api/hello', methods=['GET'])
 def hello():
     visitor_name = request.args.get('visitor_name')
-
     client_ip = request.remote_addr
     city = get_geolocation()
     temperature = get_weather(city)
 
     if temperature is None:
-        temperature_str = 'Temperature data unavailable'
+        temperature_str = 'No whyne me. I take God beg you'
     else:
         temperature_str = f'{temperature} °C'
 
