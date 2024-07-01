@@ -1,3 +1,4 @@
+import requests
 from flask import request
 
 def get_geolocation():
