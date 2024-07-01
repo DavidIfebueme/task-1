@@ -2,11 +2,9 @@ import requests
 from flask import request
 
 def get_client_ip():
-    if request.headers.getlist("X-Forwarded-For"):
-        client_ip = request.headers.getlist("X-Forwarded-For")[0].split(',')[0].strip()
-    else:
-        client_ip = request.remote_addr
-    return client_ip
+    response = requests.get('https://api.ipify.org?format=json')
+    ip_data = response.json()
+    return ip_data['ip']
 
 def get_geolocation(client_ip):
     api_key = '88fc2cf25b7142d69b6516596792d0de' #no de look my keys. its free go get your own
