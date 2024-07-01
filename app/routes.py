@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, request, Response
-from .geolocation import get_geolocation
+from .geolocation import get_geolocation, get_client_ip
 from .weather import get_weather
 
 main = Blueprint('main', __name__)
@@ -9,7 +9,7 @@ main = Blueprint('main', __name__)
 @main.route('/api/hello', methods=['GET'])
 def hello():
     visitor_name = request.args.get('visitor_name')
-    client_ip = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
+    client_ip = get_client_ip()
     city = get_geolocation()
     temperature = get_weather(city)
 
