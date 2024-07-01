@@ -2,7 +2,7 @@ import requests
 from flask import request
 
 def get_geolocation():
-    client_ip = request.remote_addr
+    client_ip = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
     api_key = '88fc2cf25b7142d69b6516596792d0de' #no de look my keys. its free go get your own
     base_url = 'https://ipgeolocation.abstractapi.com/v1/'
     geo_url = f'{base_url}?api_key={api_key}&ip_address={client_ip}'
