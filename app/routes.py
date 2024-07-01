@@ -10,7 +10,7 @@ main = Blueprint('main', __name__)
 def hello():
     visitor_name = request.args.get('visitor_name')
     client_ip = get_client_ip()
-    city = get_geolocation()
+    city = get_geolocation(client_ip)
     temperature = get_weather(city)
 
     if temperature is None:
