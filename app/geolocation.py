@@ -3,7 +3,7 @@ from flask import request
 
 def get_client_ip():
     if request.headers.getlist("X-Forwarded-For"):
-        client_ip = request.headers.getlist("X-Forwarded-For")[0]
+        client_ip = request.headers.getlist("X-Forwarded-For")[0].split(',')[0].strip()
     else:
         client_ip = request.remote_addr
     return client_ip
@@ -15,3 +15,5 @@ def get_geolocation(client_ip):
     geo_response = requests.get(geo_url)
     geo_data = geo_response.json()
     return geo_data.get('city')
+
+
