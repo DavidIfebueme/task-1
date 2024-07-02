@@ -2,7 +2,7 @@ import requests
 from flask import request
 
 def get_client_ip():
-    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    ip = request.headers.get('X-Forwarded-For')
     return ip
 
 def get_geolocation(client_ip):
