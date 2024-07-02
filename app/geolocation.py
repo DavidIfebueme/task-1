@@ -2,9 +2,8 @@ import requests
 from flask import request
 
 def get_client_ip():
-    response = requests.get('https://api.ipify.org?format=json')
-    ip_data = response.json()
-    return ip_data['ip']
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    return ip
 
 def get_geolocation(client_ip):
     api_key = '88fc2cf25b7142d69b6516596792d0de' #no de look my keys. its free go get your own
